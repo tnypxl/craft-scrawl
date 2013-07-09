@@ -3,7 +3,10 @@
 {% set editorjs %}
 $(document).ready(function() {
     var editor = document.getElementById('{{ name ~ 'editor' }}');
-    var myCodeMirror = CodeMirror.fromTextArea(editor);
+    var myCodeMirror = CodeMirror.fromTextArea(editor, {
+    	mode: '{{ mode }}',
+    	theme: 'paper'
+    });
 
     /*myCodeMirror.on('change', function(instance) {
         $('#preview').html(marked(instance.getValue()));

@@ -1,0 +1,16 @@
+{% import '_includes/forms' as forms %}
+
+{% set configInput %}
+	{{ forms.select({
+		id: 'mode',
+		name: 'mode',
+		options: modeOptions,
+		value: settings.mode
+	}) }}
+{% endset %}
+
+{{ forms.field({
+	label: "Markup language"|t,
+	instructions: "Choose a markup language",
+	id: 'mode'
+}, configInput) }}
