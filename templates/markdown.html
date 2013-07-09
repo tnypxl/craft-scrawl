@@ -1,1 +1,13 @@
-<textarea name="{{ name }}" class="fullwidth">{{ value }}</textarea>
+<textarea class="text" id="{{ name ~ 'editor' }}" name='{{ name }}'>{{ value }}</textarea>
+
+{% set editorjs %}
+$(document).ready(function() {
+    var editor = document.getElementById('{{ name ~ 'editor' }}');
+    var myCodeMirror = CodeMirror.fromTextArea(editor);
+
+    /*myCodeMirror.on('change', function(instance) {
+        $('#preview').html(marked(instance.getValue()));
+    });*/
+});    
+{% endset %}
+{% includeJs editorjs %}
