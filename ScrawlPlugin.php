@@ -43,7 +43,7 @@ class ScrawlPlugin extends BasePlugin
      */
     public function hookAddTwigExtension()
     {
-        Craft::import('plugins.markdown.twigextensions.MarkdownTwigExtension');
+        Craft::import('plugins.scrawl.twigextensions.MarkdownTwigExtension');
         return new MarkdownTwigExtension();
     }
 }
