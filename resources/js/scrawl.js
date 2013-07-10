@@ -47,16 +47,12 @@ Editor.prototype.render = function(el) {
   var options = this.options;
 
   var self = this;
-  var keyMaps = {};
-
-  keyMaps["Enter"] = "newlineAndIndentContinueMarkdownList";
 
   this.codemirror = CodeMirror.fromTextArea(el, {
     mode: 'markdown',
     theme: 'paper',
     indentWithTabs: true,
-    lineNumbers: false,
-    extraKeys: keyMaps
+    lineNumbers: false
   });
 
   if (options.toolbar !== false) {

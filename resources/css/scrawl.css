@@ -168,13 +168,15 @@
 
 .CodeMirror {
   font-family: monospace;
-  height: 350px;
+  min-height: 200px;
+  height: auto;
   line-height: 1.6em;
   padding-top: 5px;
 }
 .CodeMirror-scroll {
   /* Set scrolling behaviour here */
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 /* PADDING */
