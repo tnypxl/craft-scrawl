@@ -19,7 +19,7 @@ var shortcuts = {
 
 var toolbar = [
   'bold', 'italic', '|',
-  'quote', 'ul', 'ol', '|',
+  'quote', 'unorderedlist', 'orderedlist', '|',
   'link', 'image', '|',
   'undo', 'redo', '|',
   'fullscreen'
@@ -106,23 +106,29 @@ Editor.prototype.createToolbar = function(tools) {
       } else {
         name = tool;
       }
-      el = createIcon(name, {className: className, shortcut: shortcut});
 
-      // bind events, special for info
-      if (action) {
-        if (typeof action === 'function') {
-          el.onclick = action;
-        } else if (typeof action === 'string') {
-          el.href = action;
-          el.target = '_blank';
-        }
-      } else {
-        el.onclick = function() {
-          return self.action(name);
-        };
+      if (name == '|') {
+        li.className = "separator";
       }
-      self.toolbar[name] = el;
-      li.appendChild(el);
+      else {
+        el = createIcon(name, {className: className, shortcut: shortcut});
+
+        // bind events, special for info
+        if (action) {
+          if (typeof action === 'function') {
+            el.onclick = action;
+          } else if (typeof action === 'string') {
+            el.href = action;
+            el.target = '_blank';
+          }
+        } else {
+          el.onclick = function() {
+            return self.action(name);
+          };
+        }
+        self.toolbar[name] = el;
+        li.appendChild(el);
+      }
       bar.appendChild(li);
     })(tools[i]);
   }

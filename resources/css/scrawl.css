@@ -14,7 +14,7 @@
 }
 
 .scrawl-wrapper {
-  padding: 6px 7px;
+  padding: 6px 7px 0;
   background: #fff;
   border: 1px solid #ccc; border-radius: 3px; 
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 0 rgba(55, 156, 219, 0); 
@@ -43,6 +43,14 @@
   padding: 1px 0 3px 1px;
   outline: none;
   list-style: none !important;
+}
+
+.scrawl-toolbar li.separator {
+  padding: 0;
+  margin: 7px 2px 0 3px !important;
+  height: 19px;
+  border-left: 1px dotted #ddd;
+  border-right: none;
 }
 
 .scrawl-toolbar a.icon-fullscreen {
@@ -88,6 +96,49 @@ only screen and (                min-resolution: 2dppx) {
   outline: none;
 }
 
+/* buttons */
+.scrawl-toolbar li a.icon-html       { background-position: 0px; }
+.scrawl-toolbar li a.icon-formatting       { background-position: -25px; }
+.scrawl-toolbar li a.icon-bold       { background-position: -50px; }
+.scrawl-toolbar li a.icon-italic         { background-position: -75px; }
+.scrawl-toolbar li a.icon-deleted      { background-position: -500px; }
+.scrawl-toolbar li a.icon-unorderedlist      { background-position: -100px; }
+.scrawl-toolbar li a.icon-orderedlist        { background-position: -125px; }
+.scrawl-toolbar li a.icon-outdent      { background-position: -150px; }
+.scrawl-toolbar li a.icon-indent         { background-position: -175px; }
+.scrawl-toolbar li a.icon-image        { background-position: -200px; }
+.scrawl-toolbar li a.icon-video        { background-position: -225px; }
+.scrawl-toolbar li a.icon-file       { background-position: -250px; }
+.scrawl-toolbar li a.icon-table        { background-position: -275px; }
+.scrawl-toolbar li a.icon-link       { background-position: -300px; }
+.scrawl-toolbar li a.icon-fontcolor      { background-position: -325px; }
+.scrawl-toolbar li a.icon-backcolor      { background-position: -350px; }
+.scrawl-toolbar li a.icon-alignleft        { background-position: -375px; }
+.scrawl-toolbar li a.icon-aligncenter    { background-position: -400px; }
+.scrawl-toolbar li a.icon-alignright       { background-position: -425px; }
+.scrawl-toolbar li a.icon-justify      { background-position: -450px; }
+.scrawl-toolbar li a.icon-horizontalrule   { background-position: -475px; }
+.scrawl-toolbar li a.icon-underline      { background-position: -525px; }
+
+.scrawl-toolbar li a.icon-fullscreen     { background-position: -550px; }
+.scrawl-toolbar li a.icon-normalscreen   { background-position: -575px; }
+.scrawl-toolbar li a.icon-clips        { background-position: -600px; }
+
+.scrawl-toolbar li a.icon-alignment      { background-position: -625px; }
+
+.scrawl-toolbar li a.icon-fontfamily     { background-position: -650px; }
+.scrawl-toolbar li a.icon-fontsize     { background-position: -675px; }
+
+.scrawl-toolbar li a.icon-direction      { background-position: -700px; }
+.scrawl-toolbar li a.icon-lists        { background-position: -725px; }
+.scrawl-toolbar li a.icon-font       { background-position: -750px; }
+
+.scrawl-toolbar li a.icon-h1         { background-position: -775px; }
+.scrawl-toolbar li a.icon-h2         { background-position: -800px; }
+.scrawl-toolbar li a.icon-h3         { background-position: -825px; }
+.scrawl-toolbar li a.icon-quote        { background-position: -850px; }
+.scrawl-toolbar li a.icon-pre        { background-position: -875px; }
+
 
 /* Status bar */
 
@@ -116,6 +167,7 @@ only screen and (                min-resolution: 2dppx) {
   font-family: monospace;
   height: 350px;
   line-height: 1.6em;
+  padding-top: 5px;
 }
 .CodeMirror-scroll {
   /* Set scrolling behaviour here */
