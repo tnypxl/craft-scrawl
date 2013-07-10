@@ -40,12 +40,18 @@ class Scrawl_MarkdownFieldType extends BaseFieldType
      */
     public function getInputHtml($name, $value)
     {
+        // Include markdown parser for preview
         craft()->templates->includeJsResource('scrawl/js/marked.js');
-        craft()->templates->includeJsResource('scrawl/js/scrawl.js');
+
+        // Load up codemirror
         craft()->templates->includeJsResource('scrawl/js/codemirror/codemirror.js');
+        craft()->templates->includeJsResource('scrawl/js/codemirror/continuelist.js');
 
         // Include the correct markup language mode
         craft()->templates->includeJsResource('scrawl/js/modes/markdown.js');
+
+        // Load custom JS
+        craft()->templates->includeJsResource('scrawl/js/scrawl.js');
 
         craft()->templates->includeCssResource('scrawl/css/scrawl.css');
 
