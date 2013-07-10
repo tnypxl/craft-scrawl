@@ -12,14 +12,15 @@ var shortcuts = {
   italic: 'Cmd-I',
   link: 'Cmd-K',
   image: 'Cmd-Alt-I',
-  quote: "Cmd-'",
+  quote: "Cmd-Q",
   'ordered-list': 'Cmd-Alt-L',
   'unordered-list': 'Cmd-L'
 };
 
 var toolbar = [
   'bold', 'italic', '|',
-  'quote', 'unorderedlist', 'orderedlist', '|',
+  'h1', 'h2', 'h3', '|',
+  'quote', 'unordered-list', 'ordered-list', '|',
   'link', 'image', '|',
   'undo', 'redo', '|',
   'fullscreen'
@@ -111,21 +112,15 @@ Editor.prototype.createToolbar = function(tools) {
         li.className = "separator";
       }
       else {
+        if (name == 'fullscreen') {
+          li.className = 'right';
+        }
         el = createIcon(name, {className: className, shortcut: shortcut});
 
-        // bind events, special for info
-        if (action) {
-          if (typeof action === 'function') {
-            el.onclick = action;
-          } else if (typeof action === 'string') {
-            el.href = action;
-            el.target = '_blank';
-          }
-        } else {
-          el.onclick = function() {
-            return self.action(name);
-          };
-        }
+        el.onclick = function() {
+          return self.action(name);
+        };
+        
         self.toolbar[name] = el;
         li.appendChild(el);
       }
