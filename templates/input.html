@@ -1,16 +1,12 @@
-<textarea id="{{ name ~ 'editor' }}" name='{{ name }}'>{{ value }}</textarea>
+<div class="scrawl-wrapper">
+    <textarea id="{{ name ~ 'editor' }}" name='{{ name }}'>{{ value }}</textarea>
+</div>
 
 {% set editorjs %}
 $(document).ready(function() {
-    var editor = document.getElementById('{{ name ~ 'editor' }}');
-    var myCodeMirror = CodeMirror.fromTextArea(editor, {
-    	mode: '{{ mode }}',
-    	theme: 'paper'
-    });
-
-    /*myCodeMirror.on('change', function(instance) {
-        $('#preview').html(marked(instance.getValue()));
-    });*/
+    var textarea = document.getElementById('{{ name ~ 'editor' }}');
+    var editor = new Editor({ element: textarea });
+editor.render();
 });    
 {% endset %}
 {% includeJs editorjs %}
