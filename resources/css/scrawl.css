@@ -23,6 +23,14 @@
   -moz-transition: border linear 100ms, box-shadow linear 100ms;
 }
 
+.scrawl-wrapper textarea {
+  display: none;
+}
+
+.scrawl-loading {
+  padding-bottom: 15px;
+}
+
 /* Toolbar */
 
 .scrawl-toolbar {

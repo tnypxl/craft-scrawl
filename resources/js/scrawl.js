@@ -7,16 +7,6 @@
  * @author    Mario Friz
  */
 
-var shortcuts = {
-  bold: 'Cmd-B',
-  italic: 'Cmd-I',
-  link: 'Cmd-K',
-  image: 'Cmd-Alt-I',
-  quote: "Cmd-Q",
-  'ordered-list': 'Cmd-Alt-L',
-  'unordered-list': 'Cmd-L'
-};
-
 var toolbar = [
   'bold', 'italic', '|',
   'h1', 'h2', 'h3', '|',
@@ -26,13 +16,14 @@ var toolbar = [
   'fullscreen'
 ];
 
-var isMac = /Mac/.test(navigator.platform);
-
 function Editor(options) {
   this.init(options);
 }
 
 Editor.prototype.init = function(options) {
+  // Hide preloader
+  $('.scrawl-loading').addClass('hidden');
+
   options = options || {};
   if (options.element) {
     this.element = options.element;
@@ -57,13 +48,7 @@ Editor.prototype.render = function(el) {
 
   var self = this;
   var keyMaps = {};
-  for (var key in shortcuts) {
-    (function(key) {
-      keyMaps[fixShortcut(shortcuts[key])] = function(cm) {
-        self.action(key, cm);
-      };
-    })(key);
-  }
+
   keyMaps["Enter"] = "newlineAndIndentContinueMarkdownList";
 
   this.codemirror = CodeMirror.fromTextArea(el, {
@@ -98,15 +83,9 @@ Editor.prototype.createToolbar = function(tools) {
   for (var i = 0; i < tools.length; i++) {
     (function(tool) {
       var li = document.createElement('li');
-      var name, shortcut, action, className;
-      if (tool.name) {
-        name = tool.name;
-        shortcut = tool.shortcut;
-        action = tool.action;
-        className = tool.className;
-      } else {
-        name = tool;
-      }
+      var name, action, className;
+      
+      name = tool;
 
       if (name == '|') {
         li.className = "separator";
@@ -115,7 +94,7 @@ Editor.prototype.createToolbar = function(tools) {
         if (name == 'fullscreen') {
           li.className = 'right';
         }
-        el = createIcon(name, {className: className, shortcut: shortcut});
+        el = createIcon(name);
 
         el.onclick = function() {
           return self.action(name);
@@ -238,12 +217,18 @@ Editor.prototype.action = function(name, cm) {
     var repl = {
       quote: /^(\s*)\>\s+/,
       'unordered-list': /^(\s*)(\*|\-|\+)\s+/,
-      'ordered-list': /^(\s*)\d+\.\s+/
+      'ordered-list': /^(\s*)\d+\.\s+/,
+      h1: /^(\s*)\>\s+/,
+      h2: /^(\s*)\>\s+/,
+      h3: /^(\s*)\>\s+/
     };
     var map = {
       quote: '> ',
       'unordered-list': '* ',
-      'ordered-list': '1. '
+      'ordered-list': '1. ',
+      h1: '# ',
+      h2: '## ',
+      h3: '### '
     };
     for (var i = startPoint.line; i <= endPoint.line; i++) {
       (function(i) {
@@ -275,6 +260,9 @@ Editor.prototype.action = function(name, cm) {
     case 'quote':
     case 'unordered-list':
     case 'ordered-list':
+    case 'h1':
+    case 'h2':
+    case 'h3':
       toggleLine();
       break;
     case 'undo':
@@ -318,13 +306,8 @@ function getState(cm, pos) {
   }
   return ret;
 }
-function fixShortcut(text) {
-  if (isMac) {
-    text = text.replace('Ctrl', 'Cmd');
-  } else {
-    text = text.replace('Cmd', 'Ctrl');
-  }
-  return text;
+function formatName(text) {
+  return text.charAt(0).toUpperCase() + text.replace('-', ' ').slice(1);;
 }
 
 var createIcon = function(name, options) {
@@ -337,19 +320,10 @@ var createIcon = function(name, options) {
     return el;
   }
   el = document.createElement('a');
+  el.title = formatName(name);
 
-  var shortcut = options.shortcut || shortcuts[name];
-  if (shortcut) {
-    shortcut = fixShortcut(shortcut);
-    el.title = shortcut;
-    el.title = el.title.replace('Cmd', '⌘');
-    if (isMac) {
-      el.title = el.title.replace('Alt', '⌥');
-    }
-  }
+  el.className = 'icon-' + name;
 
-  el.className = options.className || 'icon-' + name;
-  el.innerHTML = name;
   return el;
 };
 
