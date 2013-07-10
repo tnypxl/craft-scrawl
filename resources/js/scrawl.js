@@ -270,7 +270,7 @@ Editor.prototype.action = function(name, cm) {
       cm.focus();
       break;
     case 'fullscreen':
-      toggleFullScreen(cm.getWrapperElement());
+      toggleFullScreen(cm);
       break;
   }
 };
@@ -327,16 +327,30 @@ function winHeight() {
   return window.innerHeight || (document.documentElement || document.body).clientHeight;
 }
 
-function toggleFullScreen(el) {
+function toggleFullScreen(cm) {
+  var el = cm.getWrapperElement();
   var wrapper = el.parentNode;
+  var preview = wrapper.querySelector('.preview');
   if (/\bfullscreen\b/.test(wrapper.className)) {
     wrapper.style.height = "auto";
-    
     wrapper.className = wrapper.className.replace(" fullscreen", "");
+    cm.off('change');
   }
   else {
-    var toolbarheight = 10;
+    preview.innerHTML = marked(cm.getValue());
+    cm.on('change', function(instance) {
+      preview.innerHTML = marked(cm.getValue());
+    });
+    var toolbarheight = 80;
     wrapper.className += " fullscreen";
-    wrapper.style.height = (winHeight() - toolbarheight) + "px";
+    preview.style.height = (winHeight() - toolbarheight) + "px";
+    wrapper.style.height = (winHeight() - 8) + "px";
+    el.style.height = (winHeight() - toolbarheight) + "px";
   }
+
+  CodeMirror.on(window, "resize", function() {
+    preview.style.height = (winHeight() - toolbarheight) + "px";
+    wrapper.style.height = (winHeight() - 8) + "px";
+    el.style.height = (winHeight() - toolbarheight) + "px";
+  });
 }

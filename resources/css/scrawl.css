@@ -22,17 +22,17 @@
 
 .scrawl-wrapper.fullscreen .preview {
   display: block;
-  height: 100%;
-  width: 50%;
+  width: 45%;
   left: 50%;
   top: 40px;
   position: absolute;
+  padding: 10px;
   border-left: 1px dotted #ddd;
+  overflow: auto;
 }
 
 .scrawl-wrapper.fullscreen .CodeMirror {
   display: block;
-  height: 100%;
   width: 50%;
   left: 0;
   top: 40px;
