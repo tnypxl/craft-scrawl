@@ -323,32 +323,20 @@ var createIcon = function(name, options) {
   return el;
 };
 
+function winHeight() {
+  return window.innerHeight || (document.documentElement || document.body).clientHeight;
+}
 
 function toggleFullScreen(el) {
-  // https://developer.mozilla.org/en-US/docs/DOM/Using_fullscreen_mode
-  var doc = document;
-  var isFull = doc.fullScreen || doc.mozFullScreen || doc.webkitFullScreen;
-  var request = function() {
-    if (el.requestFullScreen) {
-      el.requestFullScreen();
-    } else if (el.mozRequestFullScreen) {
-      el.mozRequestFullScreen();
-    } else if (el.webkitRequestFullScreen) {
-      el.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-    }
-  };
-  var cancel = function() {
-    if (doc.cancelFullScreen) {
-      doc.cancelFullScreen();
-    } else if (doc.mozCancelFullScreen) {
-      doc.mozCancelFullScreen();
-    } else if (doc.webkitCancelFullScreen) {
-      doc.webkitCancelFullScreen();
-    }
-  };
-  if (!isFull) {
-    request();
-  } else if (cancel) {
-    cancel();
+  var wrapper = el.parentNode;
+  if (/\bfullscreen\b/.test(wrapper.className)) {
+    wrapper.style.height = "auto";
+    
+    wrapper.className = wrapper.className.replace(" fullscreen", "");
+  }
+  else {
+    var toolbarheight = 10;
+    wrapper.className += " fullscreen";
+    wrapper.style.height = (winHeight() - toolbarheight) + "px";
   }
 }
