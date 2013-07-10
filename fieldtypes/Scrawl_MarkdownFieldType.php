@@ -47,7 +47,8 @@ class Scrawl_MarkdownFieldType extends BaseFieldType
         craft()->templates->includeJsResource('scrawl/js/codemirror/codemirror.js');
         craft()->templates->includeJsResource('scrawl/js/codemirror/continuelist.js');
 
-        // Include the correct markup language mode
+        // Include the html and markdown language mode
+        craft()->templates->includeJsResource('scrawl/js/modes/xml.js');
         craft()->templates->includeJsResource('scrawl/js/modes/markdown.js');
 
         // Load custom JS
