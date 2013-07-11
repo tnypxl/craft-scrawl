@@ -335,6 +335,8 @@ function toggleFullScreen(cm) {
     wrapper.style.height = "auto";
     wrapper.className = wrapper.className.replace(" fullscreen", "");
     cm.off('change');
+    el.style.height = "auto";
+    document.getElementsByTagName("html")[0].style.overflow = "auto";
   }
   else {
     preview.innerHTML = marked(cm.getValue());
@@ -346,6 +348,7 @@ function toggleFullScreen(cm) {
     preview.style.height = (winHeight() - toolbarheight) + "px";
     wrapper.style.height = (winHeight() - 8) + "px";
     el.style.height = (winHeight() - toolbarheight) + "px";
+    document.getElementsByTagName("html")[0].style.overflow = "hidden";
   }
 
   CodeMirror.on(window, "resize", function() {

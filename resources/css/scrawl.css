@@ -41,7 +41,12 @@
 
 .scrawl-wrapper.fullscreen .scrawl-toolbar {
   position: fixed;
-  width: 100%;
+  width: 98%;
+}
+
+.scrawl-wrapper.fullscreen .scrawl-toolbar li a.icon-fullscreen 
+{ 
+  background-position: -225px; 
 }
 
 .scrawl-wrapper.fullscreen .editor-statusbar {
@@ -63,6 +68,21 @@
 .scrawl-loading {
   padding-bottom: 15px;
   margin-top: -10px;
+}
+
+/* Fix scrollbars ! */
+
+.scrawl-wrapper .CodeMirror-vscrollbar {
+  overflow-y: hidden;
+}
+
+.scrawl-wrapper.fullscreen .CodeMirror-vscrollbar {
+  overflow-y: auto;
+}
+
+.scrawl-wrapper.fullscreen .CodeMirror-scroll {
+  overflow: auto;
+  margin-right: 0;
 }
 
 /* Toolbar */
@@ -178,7 +198,7 @@
 /* Status bar */
 
 .editor-statusbar {
-  border-top: 1px solid #ece9e9;
+  border-top: 1px dotted #ddd;
   padding: 8px 10px;
   font-size: 12px;
   color: #959694;
