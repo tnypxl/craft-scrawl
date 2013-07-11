@@ -12,7 +12,7 @@ namespace Craft;
 class Scrawl_MarkdownFieldType extends BaseFieldType
 {
 
-    public static $devMode = true;
+    public static $devMode = false;
 
     /**
      * Returns the type of field this is.
