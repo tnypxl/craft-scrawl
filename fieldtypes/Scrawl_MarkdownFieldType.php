@@ -54,6 +54,7 @@ class Scrawl_MarkdownFieldType extends BaseFieldType
         craft()->templates->includeJsResource('scrawl/js/scrawl.js');
 
         craft()->templates->includeCssResource('scrawl/css/scrawl.css');
+        craft()->templates->includeCssResource('scrawl/css/preview.css');
 
         return craft()->templates->render('scrawl/input', array(
             'name'     => $name,
