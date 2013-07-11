@@ -139,12 +139,12 @@ Editor.prototype.createStatusbar = function(status) {
       var el = document.createElement('span');
       el.className = name;
       if (name === 'words') {
-        el.innerHTML = '0';
+        el.innerHTML = cm.getValue().length;
         cm.on('update', function() {
           el.innerHTML = cm.getValue().length;
         });
       } else if (name === 'lines') {
-        el.innerHTML = '0';
+        el.innerHTML = cm.lineCount();
         cm.on('update', function() {
           el.innerHTML = cm.lineCount();
         });

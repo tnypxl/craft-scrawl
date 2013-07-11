@@ -220,7 +220,7 @@
 
 .CodeMirror {
   font-family: monospace;
-  min-height: 200px;
+  min-height: 150px;
   height: auto;
   line-height: 1.6em;
   padding-top: 5px;
