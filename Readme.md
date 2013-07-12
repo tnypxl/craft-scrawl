@@ -12,7 +12,6 @@ Simply follow these 2 steps:
 
 * Copy the **scrawl** folder into your **craft/plugins/** folder
 * Go to **settings/plugins** and install scrawl
-* Create a new field of type Markdown
 
 ## Credits
 
