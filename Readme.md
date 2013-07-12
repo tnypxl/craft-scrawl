@@ -10,7 +10,7 @@ The documentation is at <http://builtbysplash.com/projects/craft-scrawl/docs>
 
 Simply follow these 2 steps:
 
-* Copy the **scrawl** folder into your **craft/plugins/** folder
+* Rename the folder to **scrawl** and copy it into your **craft/plugins/** folder. Ex, **craft/plugins/scrawl**
 * Go to **settings/plugins** and install scrawl
 
 ## Credits
