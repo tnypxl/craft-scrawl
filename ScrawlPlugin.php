@@ -11,6 +11,9 @@ namespace Craft;
 
 class ScrawlPlugin extends BasePlugin
 {
+
+    public static $devMode = false;
+
     public function getName()
     {
         return Craft::t('Scrawl');
@@ -18,7 +21,7 @@ class ScrawlPlugin extends BasePlugin
 
     public function getVersion()
     {
-        return '0.9.3';
+        return '1.0.0';
     }
 
     public function getDeveloper()

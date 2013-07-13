@@ -32,4 +32,15 @@
         <echo msg="Finishing up..." />        
     </target>
 
+    <target name="release">
+        <echo msg="Preparing release..." />
+        <zip destfile="../../scrawl.zip">
+            <fileset dir="../../">
+                <include name="scrawl/" />
+                <exclude name="scrawl/build/" />
+            </fileset>
+        </zip>
+        <echo msg="Release .zip has been created!" />
+    </target>
+
 </project>

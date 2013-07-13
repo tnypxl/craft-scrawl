@@ -11,9 +11,6 @@ namespace Craft;
 
 class Scrawl_MarkdownFieldType extends BaseFieldType
 {
-
-    public static $devMode = false;
-
     /**
      * Returns the type of field this is.
      *
@@ -43,7 +40,7 @@ class Scrawl_MarkdownFieldType extends BaseFieldType
      */
     public function getInputHtml($name, $value)
     {        
-        if (Scrawl_MarkdownFieldType::$devMode === false) {
+        if (ScrawlPlugin::$devMode === false) {
             // Include compiled css and js in production mode
             craft()->templates->includeJsResource('scrawl/min/scrawl.js');
             craft()->templates->includeCssResource('scrawl/min/scrawl.css');
