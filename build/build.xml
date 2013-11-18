@@ -7,7 +7,7 @@
     <property name="minPath" value="../resources/min/" />
 
     <target name="clean">
-        <echo msg="Cleaning old files..." />     
+        <echo msg="Cleaning old files..." />
         <delete file="${minPath}scrawl.js" verbose="false" failonerror="false" />
         <delete file="${minPath}scrawl.css" verbose="false" failonerror="false" />
     </target>
@@ -25,14 +25,14 @@
     <target name="minify" depends="concatenate">
         <echo msg="Minifying files..." />
         <exec command="java -jar yuicompressor-2.4.6.jar ${minPath}scrawl.js -o ${minPath}scrawl.js" />
-        <exec command="java -jar yuicompressor-2.4.6.jar ${minPath}scrawl.css -o ${minPath}scrawl.css" />    
+        <exec command="java -jar yuicompressor-2.4.6.jar ${minPath}scrawl.css -o ${minPath}scrawl.css" />
     </target>
 
-    <target name="build" depends="minify">
-        <echo msg="Finishing up..." />        
+    <target name="finish" depends="minify">
+        <echo msg="Finishing up..." />
     </target>
 
-    <target name="release">
+    <target name="build">
         <echo msg="Preparing release..." />
         <zip destfile="../../scrawl.zip">
             <fileset dir="../../">
