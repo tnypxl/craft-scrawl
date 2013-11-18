@@ -1,14 +1,14 @@
 <div class="scrawl-wrapper">
-    <textarea id="{{ name ~ 'editor' }}" name='{{ name }}'>{{ value }}</textarea>
-    <p class="scrawl-loading">Loading..</p>
+    <textarea id="{{ id }}" name='{{ name }}'>{{ value }}</textarea>
+    <p class="scrawl-loading">Loading...</p>
     <div class="preview"></div>
 </div>
 
 {% set editorjs %}
 $(document).ready(function() {
-    var textarea = document.getElementById('{{ name ~ 'editor' }}');
-    var editor = new Editor({ element: textarea });
+    var textElement = document.getElementById('{{ jsId }}');
+    var editor = new Editor({ element: textElement });
     editor.render();
-});    
+});
 {% endset %}
 {% includeJs editorjs %}

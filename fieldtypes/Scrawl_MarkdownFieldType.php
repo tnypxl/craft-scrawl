@@ -39,32 +39,29 @@ class Scrawl_MarkdownFieldType extends BaseFieldType
      * @return string
      */
     public function getInputHtml($name, $value)
-    {        
-        if (ScrawlPlugin::$devMode === false) {
-            // Include compiled css and js in production mode
-            craft()->templates->includeJsResource('scrawl/min/scrawl.js');
-            craft()->templates->includeCssResource('scrawl/min/scrawl.css');
-        }
-        else {
-            // Include markdown parser for preview
-            craft()->templates->includeJsResource('scrawl/js/marked.js');
+    {
+        // Include markdown parser for preview
+        craft()->templates->includeJsResource('scrawl/js/marked.js');
 
-            // Load up codemirror
-            craft()->templates->includeJsResource('scrawl/js/codemirror/codemirror.js');
+        // Load up codemirror
+        craft()->templates->includeJsResource('scrawl/js/codemirror/codemirror.js');
 
-            // Include the html and markdown language mode
-            craft()->templates->includeJsResource('scrawl/js/modes/xml.js');
-            craft()->templates->includeJsResource('scrawl/js/modes/markdown.js');
+        // Include the html and markdown language mode
+        craft()->templates->includeJsResource('scrawl/js/modes/xml.js');
+        craft()->templates->includeJsResource('scrawl/js/modes/markdown.js');
 
-            // Load custom JS
-            craft()->templates->includeJsResource('scrawl/js/scrawl.js');
+        // Load custom JS
+        craft()->templates->includeJsResource('scrawl/js/scrawl.js');
 
-            // Load css
-            craft()->templates->includeCssResource('scrawl/css/scrawl.css');
-            craft()->templates->includeCssResource('scrawl/css/preview.css');
-        }
+        // Load css
+        craft()->templates->includeCssResource('scrawl/css/scrawl.css');
+        craft()->templates->includeCssResource('scrawl/css/preview.css');
+
+        $id = craft()->templates->formatInputId($name);
 
         return craft()->templates->render('scrawl/input', array(
+            'id'       => $id,
+            'jsId'     => craft()->templates->namespaceInputId($id),
             'name'     => $name,
             'value'    => $value,
         ));
